@@ -1,0 +1,52 @@
+switch to workspace first
+
+> conda env list  (or) conda info --envs
+> conda create --name myDjangoEnv django
+> activate myDjangoEnv
+
+myDjangoEnv> django-admin startproject first_project
+  >> creates folders for this project
+myDjangoEnv> cd first_project
+myDjangoEnv> python manage.py runserver
+  server starts at http://127.0.0.1:8000/
+Stop server
+myDjangoEnv> python manage.py startapp first_app
+  >> creates folders for this app
+> Add "first_app" in 'first_project/setting.py' under INSTALLED_APPS
+
+myDjangoEnv> python manage.py runserver
+  >> verify for NO errors
+Stop server
+
+> make chages to "first_app/view.py"
+  >> add individual functions for each view
+
+> add the above added view from first_app to "first_project/first_project/urls.py"  under "urlpatterns"
+  > from fisrt_app import views
+
+// ######## Templates #####################
+> create a "first_project/templates" directory and then sub-directory for each specific app.
+  i.e., "first_project/templates/first_app"
+> creatE "index.html" under "first_project/templates/first_app"
+> Add below to "first_project/first_project/settings.py"
+  TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")  //this sytanx will avoid OS level path resolution
+> Update the DIR key in "first_project/first_project/settings.py" under TEMPLATES dictionary
+            'DIRS': [TEMPLATE_DIR,],
+> restart server and test
+
+// ######## STATIC files #####################
+> create a folder "first_project/static/images" - add images like "SELF.jpg"
+> Add below to "first_project/first_project/settings.py"
+  STATIC_DIR = os.path.join(BASE_DIR, "static")
+  STATICFILES_DIRS = [
+      STATIC_DIR,
+  ]
+> change "first_project/templates/first_app/index.html" to add static content
+  add in start below <DOCTYPE>  -- {% load staticfiles %}
+    <img src="{% static "images/SELF.jpg" %}" alt="Uh Oh, didn't able to show "
+
+>> Add CSS static files "first_project/static/css" add "mystyle.css"
+  add below in "first_project/templates/first_app/index.html" under title tag
+      <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/>
+> restart server and test
+      

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>First App</title>
+    <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/>
+  </head>
+  <body>
+    <h1>Hello this is index.html! </h1>
+    {{ insert_me }}
+    <br>
+    <h2> My Potrait </h2>
+    <img src="{% static "images/SELF.jpg" %}" alt="Uh Oh, didn't able to show "
+  </body>
+</html>
